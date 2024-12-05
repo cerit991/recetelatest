@@ -57,7 +57,7 @@ const RecipePage = ({ initialRecipes }) => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {initialRecipes.map((recipe) => (
             <div key={recipe.name} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-              {recipe.image && <img src={recipe.image} alt="Recipe Image" className="w-full h-48 object-cover" />}
+              {recipe.image && <img src={`/data/uploads/${recipe.name}.png`} alt="Recipe Image" className="w-full h-48 object-cover" />}
               <div className="p-6">
                 <div className="flex items-center gap-2 mb-3">
                   <ChefHat className="w-5 h-5 text-orange-500" />
