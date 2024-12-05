@@ -36,25 +36,25 @@ const RecipePage = ({ initialRecipes }) => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 to-neutral-50">
       <div className="max-w-7xl mx-auto p-6">
-        <div className="flex justify-between items-center mb-8">
-          <h1 className="text-4xl font-bold text-slate-800">Mutfak Reçeteleri</h1>
-          <div className="relative">
+        <div className="flex flex-col md:flex-row justify-between items-center mb-8">
+          <h1 className="text-4xl font-bold text-slate-800 mb-4 md:mb-0">Mutfak Reçeteleri</h1>
+          <div className="relative w-full md:w-auto mb-4 md:mb-0">
             <input
               type="text"
               placeholder="Reçete ara..."
-              className="pl-10 pr-4 py-2 rounded-full border border-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-500/20 w-64"
+              className="pl-10 pr-4 py-2 rounded-full border border-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-500/20 w-full md:w-64"
             />
             <Search className="absolute left-3 top-2.5 text-gray-400 w-5 h-5" />
           </div>
           <button
             onClick={() => router.push('/mkdirrecete')}
-            className="ml-4 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg font-medium transition-colors duration-200"
+            className="w-full md:w-auto bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg font-medium transition-colors duration-200"
           >
             Reçete Oluştur
           </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {initialRecipes.map((recipe) => (
             <div key={recipe.name} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
               <div className="p-6">
@@ -84,7 +84,7 @@ const RecipePage = ({ initialRecipes }) => {
                   </div>
                 </div>
 
-                <div className="flex gap-2">
+                <div className="flex flex-col sm:flex-row gap-2">
                   <button
                     onClick={() => handleViewRecipe(recipe.name)}
                     className="flex-1 bg-orange-500 hover:bg-orange-600 text-white py-2 rounded-lg font-medium transition-colors duration-200"
