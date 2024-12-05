@@ -1,5 +1,15 @@
 import fs from 'fs'
 import path from 'path'
+import { NextApiRequest, NextApiResponse } from 'next'
+
+// Increase the body size limit
+export const config = {
+  api: {
+    bodyParser: {
+      sizeLimit: '10mb', // Set desired limit here
+    },
+  },
+}
 
 export default function handler(req, res) {
   if (req.method === 'POST') {

@@ -41,7 +41,8 @@ const RecipeDetail = ({ recipe }) => {
             </div>
 
             <div className="p-8">
-              {recipe.image && <img src={recipe.image} alt="Recipe Image" className="mb-8 rounded-xl" />}
+              {/* Remove the image display */}
+              {/* {recipe.image && <img src={recipe.image} alt="Recipe Image" className="mb-8 rounded-xl" />} */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                 <div className="bg-orange-50/50 rounded-xl p-6 space-y-6">
                   <h2 className="text-xl font-semibold text-gray-800 flex items-center gap-2 mb-6">
