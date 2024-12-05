@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useRouter } from 'next/router'
 import fs from 'fs'
 import path from 'path'
-import { Clock, Users, ChefHat, Scale, Thermometer, UtensilsCrossed, Award, Tags } from 'lucide-react'
+import { Clock, Users, ChefHat, Scale, Thermometer, UtensilsCrossed, Award, Tags, Image } from 'lucide-react'
 
 const EditRecipe = ({ recipe }) => {
   const [name, setName] = useState(recipe.name)
@@ -14,8 +14,20 @@ const EditRecipe = ({ recipe }) => {
   const [temperature, setTemperature] = useState(recipe.temperature)
   const [category, setCategory] = useState(recipe.category)
   const [ingredients, setIngredients] = useState(recipe.ingredients)
+  const [image, setImage] = useState(recipe.image || '')
   const [loading, setLoading] = useState(false)
   const router = useRouter()
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0]
+    if (file) {
+      const reader = new FileReader()
+      reader.onloadend = () => {
+        setImage(reader.result)
+      }
+      reader.readAsDataURL(file)
+    }
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -25,7 +37,7 @@ const EditRecipe = ({ recipe }) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ name, chef, prepTime, cookTime, servings, difficulty, temperature, category, ingredients }),
+      body: JSON.stringify({ name, chef, prepTime, cookTime, servings, difficulty, temperature, category, ingredients, image }),
     })
     if (response.ok) {
       setTimeout(() => {
@@ -208,6 +220,20 @@ const EditRecipe = ({ recipe }) => {
                   className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-colors"
                   placeholder="Her bir malzemeyi yeni bir satıra yazın..."
                 />
+              </div>
+
+              <div className="mt-8">
+                <label className="flex items-center gap-2 text-gray-700 font-medium mb-2">
+                  <Image className="w-5 h-5 text-orange-500" />
+                  Görsel
+                </label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageChange}
+                  className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-colors"
+                />
+                {image && <img src={image} alt="Recipe Image" className="mt-4 rounded-xl" />}
               </div>
 
               <div className="mt-8 flex gap-4">
